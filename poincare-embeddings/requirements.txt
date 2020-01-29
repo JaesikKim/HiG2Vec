@@ -1,0 +1,6 @@
+scikit-learn
+pandas
+cython
+tqdm
+numpy
+torch==1.2.0
