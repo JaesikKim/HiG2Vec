@@ -66,6 +66,7 @@ def train(
             preds = model(inputs)
             loss = model.loss(preds, targets, size_average=True)
             loss.backward()
+            
             optimizer.step(lr=lr, counts=counts)
             epoch_loss[i_batch] = loss.cpu().item()
         if rank == 1:

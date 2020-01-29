@@ -14,7 +14,7 @@ import logging
 import argparse
 from hype.sn import Embedding, initialize
 from hype.adjacency_matrix_dataset import AdjacencyDataset
-from hype import train
+from hype import trainGO
 from hype.graph import load_edge_list, eval_reconstruction
 from hype.checkpoint import LocalCheckpoint
 from hype.rsgd import RiemannianSGD
@@ -84,7 +84,7 @@ def main():
                         help='Dataset identifier')
     parser.add_argument('-dim', type=int, default=1000,
                         help='Embedding dimension')
-    parser.add_argument('-manifold', type=str, default='lorentz',
+    parser.add_argument('-manifold', type=str, default='poincare',
                         choices=MANIFOLDS.keys(), help='Embedding manifold')
     parser.add_argument('-lr', type=float, default=0.3,
                         help='Learning rate')
@@ -153,7 +153,7 @@ def main():
 
     # set burnin parameters
     data.neg_multiplier = opt.neg_multiplier
-    train._lr_multiplier = opt.burnin_multiplier
+    trainGO._lr_multiplier = opt.burnin_multiplier
 
     # Build config string for log
     log.info(f'json_conf: {json.dumps(vars(opt))}')
@@ -224,11 +224,11 @@ def main():
         kwargs = {'ctrl': control, 'progress' : not opt.quiet}
         for i in range(opt.train_threads):
             kwargs['rank'] = i
-            threads.append(mp.Process(target=train.train, args=args, kwargs=kwargs))
+            threads.append(mp.Process(target=trainGO.train, args=args, kwargs=kwargs))
             threads[-1].start()
         [t.join() for t in threads]
     else:
-        train.train(device, model, data, optimizer, opt, log, ctrl=control,
+        trainGO.train(device, model, data, optimizer, opt, log, ctrl=control,
                 progress=not opt.quiet)
     controlQ.put(None)
     control_thread.join()
