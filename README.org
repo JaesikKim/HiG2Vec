@@ -1,0 +1,30 @@
+# HiG2Vec
+
+** Installation
+Simply clone this repository via
+
+#+BEGIN_SRC sh
+git clone https://github.com/JaesikKim/HiG2Vec.git
+#+END_SRC
+
+** transitive closure
+
+** Train
+#+BEGIN_SRC sh
+./run_embedding.sh
+#+END_SRC
+
+** Evaluation
+#+BEGIN_SRC sh
+python evalGO/link_prediction.py -dset evalGO/GO_samples.txt -model result/hig2vec.pth -distfn poincare
+#+END_SRC
+
+#+BEGIN_SRC sh
+python evalGO/reconstruction.py -model result/hig2vec.pth -eval data/GO_closure.tsv -distfn poincare
+#+END_SRC
+
+
+** Dependencies
+- Python 3 with NumPy
+- PyTorch >= 1.2.0
+- Scikit-Learn
