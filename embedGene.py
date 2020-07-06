@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-present, Facebook, Inc.
-# All rights reserved.
-#
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-#
-# This source code is partially modified for the application to HiG2Vec.
 # The original source code of Poincare Embedding can be found in  https://github.com/facebookresearch/poincare-embeddings
+# This source code is partially modified for the application to HiG2Vec.
 
 import torch as th
 import numpy as np
@@ -74,16 +68,13 @@ class Unsettable(argparse.Action):
         val = None if option_string.startswith('-no') else values
         setattr(namespace, self.dest, val)
 
-def pretrain(model, data, pre_objects, pre_embeddings, ispth):
+def pretrain(model, data, pre_objects, pre_embeddings):
     trained_ix = []
     untrained_ix = []    
     for i, obj in enumerate(data.objects):
         if obj in pre_objects:
-            if ispth:
-                j = pre_objects.index(obj)
-                model.lt.state_dict()['weight'][i] = th.Tensor(pre_embeddings.cpu()[j])
-            else:
-                model.lt.state_dict()['weight'][i] = th.Tensor(pre_embeddings[obj])
+            j = pre_objects.index(obj)
+            model.lt.state_dict()['weight'][i] = th.Tensor(pre_embeddings[j])
             trained_ix.append(i)
         else:
             untrained_ix.append(i)
@@ -162,15 +153,13 @@ def main():
         print("Not adaptive format")
 
     # initialitze with pretrain model
-    if 'pth' in opt.pretrain:
-        pre_model = th.load(opt.pretrain, map_location="cuda:0")
-        ispth = True
+    if opt.pretrain != None:
+        pre_model = th.load(opt.pretrain, map_location="cpu")
+        pre_objects = pre_model['objects']
+        pre_embeddings = pre_model['embeddings']
+        model, trained_ix, untrained_ix = pretrain(model, data, pre_objects, pre_embeddings)
     else:
-        pre_model = np.load(opt.pretrain, allow_pickle=True).item()
-        ispth = False
-    pre_objects = pre_model['objects']
-    pre_embeddings = pre_model['embeddings']
-    model, trained_ix, untrained_ix = pretrain(model, data, pre_objects, pre_embeddings, ispth)
+        trained_ix = []
 
     # set burnin parameters
     data.neg_multiplier = opt.neg_multiplier

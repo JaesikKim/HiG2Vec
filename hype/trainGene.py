@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-present, Facebook, Inc.
-# All rights reserved.
-#
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-#
-# This source code is partially modified for the application to HiG2Vec.
 # The original source code of Poincare Embedding can be found in  https://github.com/facebookresearch/poincare-embeddings
+# This source code is partially modified for the application to HiG2Vec.
 
 import torch as th
 import numpy as np
@@ -67,12 +61,15 @@ def train(
             preds = model(inputs)
             loss = model.loss(preds, targets, size_average=True)
             loss.backward()
-            if opt.finetune:
-                pass
-            else:
-                for param in model.lt.parameters():
-                    grad_ix = param.grad.data._indices()[0].clone().cpu()
-                    msk = np.arange(len(grad_ix))[np.in1d(grad_ix, trained_ix)]
+
+            # masks for finetuning the params from the pretrained model.
+            for param in model.lt.parameters():
+                grad_ix = param.grad.data._indices()[0].clone().cpu()
+                msk = np.arange(len(grad_ix))[np.in1d(grad_ix, trained_ix)]
+                if opt.finetune:
+                    pass
+#                    param.grad.data._values()[msk,:] *= 0.1
+                else:
                     param.grad.data._values()[msk,:] *= 0
             optimizer.step(lr=lr, counts=counts)
             epoch_loss[i_batch] = loss.cpu().item()

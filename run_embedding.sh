@@ -9,35 +9,35 @@
 # The original source code of Poincare Embedding can be found in  https://github.com/facebookresearch/poincare-embeddings
 
 python3 embedGO.py \
-       -dim 10 \
-       -lr 0.3 \
-       -epochs 25 \
+       -dim 200 \
+       -lr 1 \
+       -epochs 20000 \
        -negs 50 \
-       -batchsize 50 \
+       -batchsize 20000 \
        -burnin 20 \
-       -gpu 0 \
+       -gpu 2 \
        -manifold poincare \
-       -dset ../data/GO_closure.tsv \
-       -checkpoint result/testGO.pth \
+       -dset data/GO_closure.tsv \
+       -checkpoint result/GOonly_200_20000eph.pth \
        -fresh \
        -sparse
 
-python3 embedGene.py \
-       -dim 10 \
-       -lr 1 \
-       -epochs 25 \
-       -negs 50 \
-       -batchsize 50 \
-       -burnin 20 \
-       -gpu 0 \
-       -manifold poincare \
-       -dset ../data/goa_human.tsv \
-       -pretrain result/testGO.pth \
-       -checkpoint result/test.pth \
-       -fresh \
-       -sparse \
-       -finetune
+#python3 embedGene.py \
+#       -dim 200 \
+#       -lr 0.3 \
+#       -epochs 1000 \
+#       -negs 50 \
+#       -batchsize 20000 \
+#       -burnin 20 \
+#       -gpu 2 \
+#       -manifold poincare \
+#       -dset data/goa_human.tsv \
+#       -pretrain result/GOonly_200_ori.pth \
+#       -checkpoint result/hig2vec_200_ori5.pth \
+#       -fresh \
+#       -sparse \
+#       -finetune
        
-python3 combine.py \
-       -GOonly ../poincare_embeddings/result/testGO.pth \
-       -gene_embedding result/test.pth
+#python3 combine.py \
+#       -GOonly result/GOonly_200_ori.pth \
+#       -gene_embedding result/hig2vec_200_ori5.pth
