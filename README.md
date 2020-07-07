@@ -7,7 +7,11 @@ Simply clone this repository via
 git clone https://github.com/JaesikKim/HiG2Vec.git
 #+END_SRC
 
-** transitive closure
+** Preprocessing
+Transitive closure of GO
+#+BEGIN_SRC sh
+data/transitive_closure.py -dset data/GO.tsv
+#+END_SRC
 
 ** Train
 #+BEGIN_SRC sh
@@ -42,6 +46,12 @@ python multilabel_prediction_NN.py -dset evalGene/STRING_samples_multilabel.csv 
 #+BEGIN_SRC sh
 python evalGene/score_prediction_NN.py -dset evalGene/STRING_samples_score.csv -model result/hig2vec.pth -fout evalGene/score_output.txt
 #+END_SRC
+
+** Usage of embeddings
+```python
+model = torch.load("HiG2Vec.pth", map_location="cpu")
+objects, embeddings = model['objects'], model['embeddings']
+```
 
 ** Dependencies
 - Python 3 with NumPy
