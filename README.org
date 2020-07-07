@@ -47,7 +47,7 @@ python multilabel_prediction_NN.py -dset evalGene/STRING_samples_multilabel.csv 
 python evalGene/score_prediction_NN.py -dset evalGene/STRING_samples_score.csv -model result/hig2vec.pth -fout evalGene/score_output.txt
 #+END_SRC
 
-** 
+** GO and gene embeddings
 Download link for HiG2Vec 200 dim and 1000 dim (GOonly, Human, Mouse, and Yeast)
 #+BEGIN_SRC org
 https://drive.google.com/drive/folders/1WIjFSGh9E3z-PIXNOxbwjmG8EJc2j4XT?usp=sharing
