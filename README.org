@@ -47,13 +47,16 @@ python multilabel_prediction_NN.py -dset evalGene/STRING_samples_multilabel.csv 
 python evalGene/score_prediction_NN.py -dset evalGene/STRING_samples_score.csv -model result/hig2vec.pth -fout evalGene/score_output.txt
 #+END_SRC
 
-** Usage of embeddings
-Download
+** 
+Download link for HiG2Vec 200 dim and 1000 dim (GOonly, Human, Mouse, and Yeast)
 #+BEGIN_SRC org
 https://drive.google.com/drive/folders/1WIjFSGh9E3z-PIXNOxbwjmG8EJc2j4XT?usp=sharing
 #+END_SRC
 
+Python code for usage
 #+BEGIN_SRC emacs-lisp -n
+import torch
+
 model = torch.load("HiG2Vec.pth", map_location="cpu")
 objects, embeddings = model['objects'], model['embeddings']
 #+END_SRC
