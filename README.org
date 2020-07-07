@@ -48,10 +48,15 @@ python evalGene/score_prediction_NN.py -dset evalGene/STRING_samples_score.csv -
 #+END_SRC
 
 ** Usage of embeddings
-```python
+Download
+#+BEGIN_SRC org
+https://drive.google.com/drive/folders/1WIjFSGh9E3z-PIXNOxbwjmG8EJc2j4XT?usp=sharing
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp -n
 model = torch.load("HiG2Vec.pth", map_location="cpu")
 objects, embeddings = model['objects'], model['embeddings']
-```
+#+END_SRC
 
 ** Dependencies
 - Python 3 with NumPy
