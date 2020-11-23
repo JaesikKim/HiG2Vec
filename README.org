@@ -1,4 +1,6 @@
 # HiG2Vec
+Preprint version available here
+https://www.biorxiv.org/content/10.1101/2020.07.14.195750v1
 
 ** Installation
 Simply clone this repository via
