@@ -1,4 +1,6 @@
 # HiG2Vec
+*** Our paper is In Press currently, and we will update the recent version of code soon! ***
+
 Preprint version available here
 https://www.biorxiv.org/content/10.1101/2020.07.14.195750v1
 
