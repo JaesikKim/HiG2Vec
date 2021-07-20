@@ -70,9 +70,9 @@ objects, embeddings = model['objects'], model['embeddings']
 - tqdm
 
 ** Citation
-@article{10.1093/bioinformatics/btab193,
-    author = {Kim, Jaesik and Kim, Dokyoon and Sohn, Kyung-Ah},
-    title = "{HiG2Vec: hierarchical representations of Gene Ontology and genes in the Poincaré ball}",
-    journal = {Bioinformatics},
-    year = {2021}
+#+HTML: <br> @article{10.1093/bioinformatics/btab193, 
+#+HTML: <br> author = {Kim, Jaesik and Kim, Dokyoon and Sohn, Kyung-Ah},
+#+HTML: <br> title = "{HiG2Vec: hierarchical representations of Gene Ontology and genes in the Poincaré ball}",
+#+HTML: <br> journal = {Bioinformatics},
+#+HTML: <br> year = {2021}
 }
