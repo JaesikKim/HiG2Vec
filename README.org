@@ -1,9 +1,6 @@
 # HiG2Vec
 *** Our paper is In Press currently, and we will update the recent version of code soon! ***
 
-Preprint version available here
-https://www.biorxiv.org/content/10.1101/2020.07.14.195750v1
-
 ** Installation
 Simply clone this repository via
 
@@ -71,3 +68,11 @@ objects, embeddings = model['objects'], model['embeddings']
 - Scikit-Learn
 - Pandas
 - tqdm
+
+** Citation
+@article{10.1093/bioinformatics/btab193,
+    author = {Kim, Jaesik and Kim, Dokyoon and Sohn, Kyung-Ah},
+    title = "{HiG2Vec: hierarchical representations of Gene Ontology and genes in the Poincaré ball}",
+    journal = {Bioinformatics},
+    year = {2021}
+}
