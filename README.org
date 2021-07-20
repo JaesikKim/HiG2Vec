@@ -8,6 +8,9 @@ Simply clone this repository via
 git clone https://github.com/JaesikKim/HiG2Vec.git
 #+END_SRC
 
+** Corpus
+Gene Ontology and Gene Ontology Annotation are available in official website (http://geneontology.org/)
+
 ** Preprocessing
 Transitive closure of GO
 #+BEGIN_SRC sh
@@ -78,3 +81,6 @@ objects, embeddings = model['objects'], model['embeddings']
   year = {2021}
 }
 #+END_SRC
+
+** License
+Software code is under MIT license, and the pre-trained HiG2Vec (GOonly, Human, Mouse, and Yeast) are under CC0 license
