@@ -18,7 +18,7 @@ import sys
 import json
 import torch.multiprocessing as mp
 import shutil
-
+import time
 
 th.manual_seed(42)
 np.random.seed(42)
@@ -46,7 +46,9 @@ def async_eval(adj, q, logQ, opt):
         lt = chkpnt['embeddings']
 
         sqnorms = manifold.pnorm(lt)
-
+        # if manifold.pnorm() doesn't work,
+        # sqnorms = np.sqrt(np.sum(lt.numpy()*lt.numpy(),axis=1)) 
+        
         lmsg = {
             'epoch': epoch,
             'elapsed': elapsed,
@@ -112,7 +114,7 @@ def main():
     parser.add_argument('-quiet', action='store_true', default=False)
     parser.add_argument('-lr_type', choices=['scale', 'constant'], default='constant')
     parser.add_argument('-train_threads', type=int, default=1,
-                        help='Number of threads to use in training')
+                        help='Number of threads to use in training when using CPU')
     opt = parser.parse_args()
 
     # setup debugging and logigng
@@ -128,7 +130,7 @@ def main():
     th.set_default_tensor_type('torch.DoubleTensor')
     
     # set device
-    device = th.device(f'cuda:{opt.gpu}' if th.cuda.is_available() else 'cpu')
+    device = th.device(f'cuda:{opt.gpu}' if th.cuda.is_available() and opt.gpu >=0 else 'cpu')
 
     # select manifold to optimize on
     manifold = MANIFOLDS[opt.manifold](debug=opt.debug, max_norm=opt.maxnorm)
@@ -231,4 +233,6 @@ def main():
         log.info(f'json_stats: {json.dumps(lmsg)}')
                 
 if __name__ == '__main__':
+    start_time = time.time()
     main()
+    print("--- %s seconds ---" % (time.time() - start_time))
