@@ -1,4 +1,5 @@
-Code implementation of HiG2Vec: hierarchical representations of Gene Ontology and genes in the Poincaré ball
+## HiG2Vec: hierarchical representations of Gene Ontology and genes in the Poincaré ball
+Bioinformatics 2021
 [[Paper](https://academic.oup.com/bioinformatics/article/37/18/2971/6184857)]
 
 ### Installation
