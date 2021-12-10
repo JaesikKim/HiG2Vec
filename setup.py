@@ -32,14 +32,6 @@ extensions = [
         extra_compile_args=extra_compile_args,
         language='c++',
     ),
-    Extension(
-        "hype.adjacency_matrix_dataset",
-        ["hype/adjacency_matrix_dataset.pyx"],
-        include_dirs=[numpy.get_include()],
-        extra_link_args=extra_link_args,
-        extra_compile_args=extra_compile_args,
-        language='c++',
-    ),
 ]
 
 

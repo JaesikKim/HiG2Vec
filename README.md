@@ -72,7 +72,7 @@ objects, embeddings = model['objects'], model['embeddings']
 - scikit-Learn
 - pandas
 - tqdm
-- cpython
+- cython
 
 ### Citation
 ```
