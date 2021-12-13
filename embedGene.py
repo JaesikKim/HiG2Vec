@@ -7,7 +7,6 @@ import numpy as np
 import logging
 import argparse
 from hype.sn import Embedding, initialize
-from hype.adjacency_matrix_dataset import AdjacencyDataset
 from hype import trainGene
 from hype.graph import load_edge_list, eval_reconstruction
 from hype.checkpoint import LocalCheckpoint

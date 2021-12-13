@@ -12,7 +12,7 @@ python3 embedGO.py \
        -burnin 20 \
        -gpu 0 \
        -manifold poincare \
-       -dset data/GO_closure.tsv \
+       -dset data/example_of_GO.tsv \
        -checkpoint result/GOonly_200dim.pth \
        -fresh \
        -sparse
@@ -26,7 +26,7 @@ python3 embedGene.py \
        -burnin 20 \
        -gpu 0 \
        -manifold poincare \
-       -dset data/goa_human.tsv \
+       -dset data/example_of_goa_human.tsv \
        -pretrain result/GOonly_200dim.pth \
        -checkpoint result/hig2vec_200dim.pth \
        -sym \
