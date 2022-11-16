@@ -1,5 +1,8 @@
+import pandas as pd
+import argparse  
+
 def transitive_closure(closure):
-    nstep=1
+    nstep=
     while True:
         _new_relations = set((x,w,t1,t2) for x,y,t1 in closure for q,w,t2 in closure if q == y)
         new_relations = set()
@@ -21,14 +24,14 @@ def transitive_closure(closure):
     return closure
 
 def main():
-    parser = argparse.ArgumentParser(description='Link Prediction')
+    parser = argparse.ArgumentParser(description='generating transitive closure')
     parser.add_argument('-dset', type=str, required=True,
-                        help='Link samples')
+                        help='Edge list of original graph')
     opt = parser.parse_args()
 
     GO = pd.read_csv(opt.dset, sep='\t', header=None)
     tmp = set()
-    for i in range(len(GO):
+    for i in range(len(GO)):
         tmp.add((GO.iloc[i,0], GO.iloc[i,1], GO.iloc[i,2]))
     GO_closure = transitive_closure(tmp)
 
