@@ -2,7 +2,7 @@ import pandas as pd
 import argparse  
 
 def transitive_closure(closure):
-    nstep=
+    nstep=1
     while True:
         _new_relations = set((x,w,t1,t2) for x,y,t1 in closure for q,w,t2 in closure if q == y)
         new_relations = set()
