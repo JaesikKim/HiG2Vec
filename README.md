@@ -8,6 +8,8 @@ Simply clone this repository via
 ```bash
 $ git clone https://github.com/JaesikKim/HiG2Vec.git
 $ cd HiG2Vec
+$ conda env create -n hig2vec -f environment.yml
+$ conda activate hig2vec
 $ python setup.py build_ext --inplace 
 ```
 
@@ -68,11 +70,11 @@ objects, embeddings = model['objects'], model['embeddings']
 
 ### Dependencies
 - python 3 with numpy
-- pytorch >= 1.6.0
-- scikit-Learn
+- pytorch >= 2.0.0
+- scikit-Learn >= 1.2.1
 - pandas
 - tqdm
-- cython
+- cython >= 0.29.33
 
 ### Citation
 ```
